@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab3_oop.Views.MainPage"
+             Title="Кулінарна книга">
+
+    <Grid RowDefinitions="Auto, Auto, Auto, *" Padding="16" RowSpacing="12">
+
+        <!-- Панель управління -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="10">
+            <Button Text="Відкрити" Clicked="BtnOpen_Clicked" BackgroundColor="#512BD4" TextColor="White" />
+            <Button x:Name="BtnSave" Text="Зберегти" Clicked="BtnSave_Clicked" BackgroundColor="#2E8B57" TextColor="White" />
+            <Button x:Name="BtnAdd" Text="Додати" Clicked="BtnAdd_Clicked" />
+            <Button x:Name="BtnEdit" Text="Редагувати" Clicked="BtnEdit_Clicked" />
+            <Button x:Name="BtnDelete" Text="Видалити" Clicked="BtnDelete_Clicked" BackgroundColor="#B22222" TextColor="White" />
+            <Button Text="Про програму" Clicked="BtnAbout_Clicked" BackgroundColor="Gray" TextColor="White" Margin="20,0,0,0" />
+            <Label x:Name="LblStatus" VerticalOptions="Center" FontAttributes="Bold" Margin="10,0,0,0" />
+        </HorizontalStackLayout>
+
+        <!-- Панель пошуку (LINQ) -->
+        <Border Grid.Row="1" Padding="10" StrokeThickness="1" Stroke="LightGray">
+            <Grid ColumnDefinitions="2*, 1.5*, 1*, Auto, Auto" ColumnSpacing="10">
+                <Entry x:Name="TxtKeyword" Grid.Column="0" Placeholder="Слово в назві або інгредієнтах" />
+                <Picker x:Name="CboCategory" Grid.Column="1" Title="Оберіть категорію" />
+                <Entry x:Name="TxtMaxTime" Grid.Column="2" Placeholder="Макс. час (хв)" Keyboard="Numeric" />
+                <HorizontalStackLayout Grid.Column="3" Spacing="5" VerticalOptions="Center">
+                    <CheckBox x:Name="ChkVeg" />
+                    <Label Text="Лише вегетаріанське" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="4" Spacing="5">
+                    <Button Text="Знайти" Clicked="BtnSearch_Clicked" BackgroundColor="#0078D7" TextColor="White" />
+                    <Button Text="Скинути" Clicked="BtnReset_Clicked" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Border>
+
+        <!-- Заголовок таблиці -->
+        <Grid Grid.Row="2" ColumnDefinitions="45, 2*, 1.5*, 90, 70, 3*" BackgroundColor="#333" Padding="8" ColumnSpacing="6">
+            <Label Grid.Column="0" Text="ID" TextColor="White" FontAttributes="Bold" />
+            <Label Grid.Column="1" Text="Назва" TextColor="White" FontAttributes="Bold" />
+            <Label Grid.Column="2" Text="Категорія" TextColor="White" FontAttributes="Bold" />
+            <Label Grid.Column="3" Text="Час (хв)" TextColor="White" FontAttributes="Bold" />
+            <Label Grid.Column="4" Text="Вег." TextColor="White" FontAttributes="Bold" />
+            <Label Grid.Column="5" Text="Інгредієнти" TextColor="White" FontAttributes="Bold" />
+        </Grid>
+
+        <!-- Дані таблиці -->
+        <CollectionView x:Name="GridRecipes" Grid.Row="3" SelectionMode="Single">
+            <CollectionView.EmptyView>
+                <Label Text="Немає записів для відображення. Відкрийте JSON-файл або змініть критерії пошуку."
+                       HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="45, 2*, 1.5*, 90, 70, 3*" Padding="8" ColumnSpacing="6">
+                        <Label Grid.Column="0" Text="{Binding Id}" />
+                        <Label Grid.Column="1" Text="{Binding Title}" FontAttributes="Bold" />
+                        <Label Grid.Column="2" Text="{Binding Category}" />
+                        <Label Grid.Column="3" Text="{Binding PrepTimeMinutes}" />
+                        <Label Grid.Column="4" Text="{Binding VegStatus}" />
+                        <Label Grid.Column="5" Text="{Binding IngredientsSummary}" LineBreakMode="TailTruncation" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

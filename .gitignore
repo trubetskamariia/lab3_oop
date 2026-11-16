@@ -1,0 +1,21 @@
+## --- Build Outputs ---
+[Bb]in/
+[Oo]bj/
+out/
+
+## --- Visual Studio & IDE Settings ---
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+
+## --- OS & Package Cache ---
+.DS_Store
+Thumbs.db
+packages/
+*.userprefs
+
+## --- Temporary & Log Files ---
+*.log
+*.tmp

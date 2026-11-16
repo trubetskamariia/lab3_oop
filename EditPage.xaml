@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab3_oop.Views.EditPage"
+             Title="Редагування">
+
+    <VerticalStackLayout Padding="20" Spacing="10" MaximumWidthRequest="420" VerticalOptions="Center">
+        <Label Text="ID:" />
+        <Entry x:Name="TxtId" Keyboard="Numeric" />
+
+        <Label Text="Назва:" />
+        <Entry x:Name="TxtTitle" />
+
+        <Label Text="Категорія:" />
+        <Entry x:Name="TxtCategory" />
+
+        <Label Text="Час приготування (хв):" />
+        <Entry x:Name="TxtTime" Keyboard="Numeric" />
+
+        <HorizontalStackLayout Spacing="5">
+            <CheckBox x:Name="ChkVeg" />
+            <Label Text="Вегетаріанська страва" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <Label Text="Інгредієнти (через кому):" />
+        <Editor x:Name="TxtIngredients" HeightRequest="80" />
+
+        <HorizontalStackLayout Spacing="10" Margin="0,15,0,0" HorizontalOptions="Center">
+            <Button Text="Зберегти" Clicked="BtnSave_Clicked" BackgroundColor="#2E8B57" TextColor="White" WidthRequest="120" />
+            <Button Text="Скасувати" Clicked="BtnCancel_Clicked" BackgroundColor="Gray" TextColor="White" WidthRequest="120" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
